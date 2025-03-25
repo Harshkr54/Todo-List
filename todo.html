@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO List</title>
+    <link rel="stylesheet" href="todo.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Toggle Container -->
+    <div class="top-right-container">
+      <div class="toggle-container">
+        <div class="toggle" id="toggle">
+          <div class="circle">
+            <i class="fas fa-sun light-icon"></i>
+            <i class="fas fa-moon dark-icon"></i>
+          </div>
+        </div>
+      </div>
+      <p id="theme_text">Light Mode</p>
+    </div>
+
+    <h1 id="main_heading">TODO List</h1>
+
+    <!-- Input Section -->
+    <div class="input-container">
+      <div>
+        <input type="text" id="task" placeholder="Enter your task" />
+      </div>
+      <div>
+        <input type="date" id="startDate" />
+      </div>
+      <div>
+        <input type="date" id="targetDate" />
+      </div>
+      <div>
+        <select id="priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+      <div>
+        <button id="add_button" onclick="addTodo();">Add Task</button>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="action-buttons">
+      <button onclick="exportTasks()">
+        <i class="fas fa-file-export"></i> Export Tasks
+      </button>
+      <input
+        type="file"
+        id="import-file"
+        onchange="importTasks(event)"
+        style="display: none"
+      />
+      <button onclick="document.getElementById('import-file').click()">
+        <i class="fas fa-file-import"></i> Import Tasks
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <button onclick="filterTasks('all')">All</button>
+      <button onclick="filterTasks('pending')">Pending</button>
+      <button onclick="filterTasks('completed')">Completed</button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search tasks..." />
+      <button onclick="searchTasks()">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+      <span id="progress-text">0%</span>
+    </div>
+
+    <!-- Task Table -->
+    <table id="task_table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="task_list">
+        <!-- Tasks will be added here dynamically -->
+      </tbody>
+    </table>
+
+    <!-- Edit Popup -->
+    <div id="edit-popup" class="popup">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closeEditPopup()">&times;</span>
+        <h2>Edit Task</h2>
+        <input type="text" id="edit-task" placeholder="Task" />
+        <input type="date" id="edit-startDate" />
+        <input type="date" id="edit-targetDate" />
+        <select id="edit-priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        <div class="popup-buttons">
+          <button id="save-edit-btn" onclick="saveEditedTask()">Save</button>
+          <button id="cancel-edit-btn" onclick="closeEditPopup()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Design by Harsh Raj</p>
+    </footer>
+
+    <script src="todo.js"></script>
+  </body>
+</html>
